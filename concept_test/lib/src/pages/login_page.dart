@@ -35,6 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(fontSize: 20.0)),
                       _mailAuthentication(),
                       Divider(),
+                      SizedBox(height: 10.0,),
                       _googleSignInButton(),
                       _facebookSignInButton(),
                       _twitterSignInButton(),
@@ -97,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
               elevation: 0.0,
               color: Colors.blue,
               textColor: Colors.white,
-              onPressed:(){}
+              onPressed:()=> Navigator.pushReplacementNamed(context, 'location')
             );
           },
         ), SizedBox(height: 10.0,),
@@ -110,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
     return SignInButton(
       Buttons.Google,       
       text: "Sign in with Google",
-      onPressed: (){}
+      onPressed: ()=>Navigator.pushReplacementNamed(context, 'location')
     );
   }
 
@@ -118,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
     return SignInButton(
       Buttons.Facebook, 
       text: "Sign in with Facebook",
-      onPressed: (){}
+      onPressed: ()=>Navigator.pushReplacementNamed(context, 'location')
     );
   }
 
@@ -126,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
     return SignInButton(
       Buttons.Twitter, 
       text: "Sign in with Twitter",
-      onPressed: (){}
+      onPressed: ()=>Navigator.pushReplacementNamed(context, 'location')
     );
   }
 }

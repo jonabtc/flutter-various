@@ -25,12 +25,13 @@ class _LocationVerificationPageState extends State<LocationVerificationPage> {
         if (snapshot.hasData) {
           debugPrint('snapshot: ${snapshot.data}');
           return ListView.builder(
+            padding: EdgeInsets.symmetric(vertical:10.0),
               key: UniqueKey(),
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) =>
                   snapshot.data[index]);
         } else {
-          return Container(color: Colors.redAccent);
+          return Container();
         }
       },
     );
@@ -46,26 +47,25 @@ class _LocationVerificationPageState extends State<LocationVerificationPage> {
               color: Colors.blueGrey,
             ),
             title: Text('Turn On Location'),
-            subtitle: Text(
-                'For use this application, you must get turn on location service'),
-          ),
+            subtitle: Text('For use this application, you must get TURN ON location service')
+            ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               FlatButton(
-                child: Text('Why?'),
-                onPressed: () {},
-              ),
-              FlatButton(
-                child: Text('ACTIVATE'),
+                child: Text('ACTIVATE', style: TextStyle(color: Colors.blue)),
                 onPressed: ()=>PermissionServices.requestLocationService().then((value){
-                  
+
                   if(value){
-                    setState(() {
-                      
+                    setState((){
+                     PermissionServices.isLocationAllowed().then((isLocationAllowed){
+                       if (isLocationAllowed) 
+                        Navigator.pushReplacementNamed(context, 'home');
+                     });                      
                     });
                     debugPrint('Remover elemento');
                   }else{
+                    
                     debugPrint('Say something');
                   }
                 }),
@@ -94,12 +94,18 @@ class _LocationVerificationPageState extends State<LocationVerificationPage> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               FlatButton(
-                child: Text('Why?'),
-                onPressed: () {},
-              ),
-              FlatButton(
-                child: Text('ALLOW'),
-                onPressed: () {},
+                child: Text('ALLOW', style: TextStyle(color: Colors.blue)),
+                onPressed: ()=>PermissionServices.requestLocationPermission().then((value){
+
+                  if (value){
+                    setState(() async {
+                      bool isLocationActived = await PermissionServices.isLocationActived();
+                      if(isLocationActived){
+                        Navigator.pushReplacementNamed(context, 'home');
+                      }
+                    });
+                  }
+                }),
               )
             ],
           )
@@ -108,40 +114,6 @@ class _LocationVerificationPageState extends State<LocationVerificationPage> {
     );
   }
 
-  _cardRequestPushNotificationPermission() {
-    return Card(
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            leading: Icon(
-              Icons.notifications_active,
-              color: Colors.blueGrey,
-            ),
-            title: Text('Grant acces to Push Notification'),
-            subtitle: Text(
-                'For a better experience, grant push Notification permission to this app'),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FlatButton(
-                child: Text('Why?'),
-                onPressed: () {},
-              ),
-              FlatButton(
-                child: Text('DENNY'),
-                onPressed: () {},
-              ),
-              FlatButton(
-                child: Text('ALLOW'),
-                onPressed: () {},
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
 
   Future<List<Card>> _getListPermissions() async {
     List<Card> listPermissionWidgets = [];
