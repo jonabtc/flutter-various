@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
     return SignInButton(
       Buttons.Google,       
       text: "Sign in with Google",
-      onPressed: ()=>Navigator.pushReplacementNamed(context, 'location')
+      onPressed: ()=>Navigator.pushReplacementNamed(context, 'locationO')
     );
   }
 

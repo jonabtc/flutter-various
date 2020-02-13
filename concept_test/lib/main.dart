@@ -1,4 +1,5 @@
 import 'package:concept_test/src/pages/home_page.dart';
+import 'package:concept_test/src/pages/test_location_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:concept_test/src/pages/location_verification_page.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
         'login'     :   (BuildContext context) => LoginPage(),
         'location'  :   (BuildContext context) => LocationVerificationPage(),
         'home'      :   (BuildContext context) => HomePage(),
+        'locationO' :   (BuildContext context) => LocationPageO(),
       }
     );
   }
