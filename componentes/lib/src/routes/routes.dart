@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:componentes/src/pages/listview_page.dart';
+import 'package:componentes/src/pages/slider_page.dart';
 import 'package:componentes/src/pages/animated_container.dart';
 import 'package:componentes/src/pages/alert_page.dart';
 import 'package:componentes/src/pages/avatar_page.dart';
@@ -16,5 +18,8 @@ return   <String, WidgetBuilder>{
         'card'    : (BuildContext context) => CardPage(),
         'animatedContainer' : (BuildContext context) => AnimatedContainerPage(),
         'inputs'   : (BuildContext context) => InputPage(),
+        'slider'   : (BuildContext context) => SliderPage(),
+        'list'   : (BuildContext context) => ListaPage(),
+        
       };
 }
