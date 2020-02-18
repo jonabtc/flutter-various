@@ -11,7 +11,7 @@ class Peliculas{
 
     for( var item in jsonList){
       final pelicula = new Pelicula.fromJsonMap(item);
-      item.add(pelicula);
+      items.add(pelicula);
     }
   } 
 }
@@ -61,8 +61,16 @@ class Pelicula {
     originalTitle     = json['original_title'];
     genreIds          = json['genre_ids'].cast<int>();
     title             = json['title'];
-    voteAverage       = json['vote_Average'] / 1;
+    voteAverage       = json['vote_average'] / 1;
     overview          = json['overview'];
     releaseDate       = json['release_date'];
+  }
+
+  getPosterImg(){
+    if( posterPath == null){      
+      return 'https://image.shutterstock.com/image-vector/no-image-available-icon-flat-260nw-1240855801.jpg';
+    }else{
+      return 'https://image.tmdb.org/t/p/w500$posterPath';
+    }
   }
 }
