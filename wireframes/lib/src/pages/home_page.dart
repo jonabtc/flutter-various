@@ -10,15 +10,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
-
-  TabController _tabController;
-
-  @override
-  void initState() {
-    _tabController = new TabController(length: 2, vsync:this);
-    super.initState();
-  }
+class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +21,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           child: Column(
             children: [
               _createPointsBanner(),
-              _otherHomeTab(),
-              //_createHomeTab(),
-             // _createTabBarView(),
+              _createHomeTab(),
             ],
           ),
         ),
@@ -76,7 +66,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 
-  Widget _otherHomeTab(){
+  Widget _createHomeTab(){
     return DefaultTabController(
       length: 2,
       child: Expanded( child: Column(
@@ -96,26 +86,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       )
     );
   }
-  Widget _createHomeTab() {
-    return Container(        
-      child: TabBar(
-        tabs: [
-          Tab(text: 'Promociones'),
-          Tab(text: 'Establecimientos'),
-        ],
-        labelColor: Colors.black,
-        labelStyle: TextStyle(fontSize: 14.0),
-        indicator: BoxDecoration(
-            border: Border.all(
-              color: Colors.black,
-              width: 1.0,
-            ),
-        ),
-        controller: _tabController,
-      ),
-    );
-  }
-  
+   
   Widget _createTabBarView(){
     
     return TabBarView(
@@ -123,7 +94,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         Text('pagina de promociones'),
         EstablishmentFrame()
       ],
-     // controller: _tabController,
     );
   }
 
