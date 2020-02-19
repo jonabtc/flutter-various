@@ -10,6 +10,7 @@ class _EstablishmentFrameState extends State<EstablishmentFrame> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
           CarouselSlider(
             items: _lista(),
@@ -18,6 +19,10 @@ class _EstablishmentFrameState extends State<EstablishmentFrame> {
             viewportFraction: 0.8,
             aspectRatio: 2.0,
           ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal:15.0, vertical: 10.0),
+            child: Text('Favoritos', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,),)),
+
       ],
     );
   }
