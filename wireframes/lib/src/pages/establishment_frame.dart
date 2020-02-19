@@ -19,10 +19,8 @@ class _EstablishmentFrameState extends State<EstablishmentFrame> {
             viewportFraction: 0.8,
             aspectRatio: 2.0,
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal:15.0, vertical: 10.0),
-            child: Text('Favoritos', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,),)),
-
+          _createFavoritesSection(),
+          Divider(),
       ],
     );
   }
@@ -55,15 +53,58 @@ class _EstablishmentFrameState extends State<EstablishmentFrame> {
                     ),
                   color: Colors.transparent,
                   onPressed: (){},
-
                 )
               ],
             ),
           ],
-        )
-        
+        ),
       );
     }
+    return lista;
+  }
+
+  Widget _createFavoritesSection(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+            padding: EdgeInsets.symmetric(horizontal:15.0, vertical: 10.0),
+            child: Text('Favoritos', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,),
+            )
+          ),
+        CarouselSlider(
+          items: _listaFavoritos(),
+          autoPlay: false,
+          enlargeCenterPage: false,
+          viewportFraction: 0.8,
+          aspectRatio: 1.0,
+        )
+        
+      ]
+    );
+  }
+
+  List <Widget> _listaFavoritos(){
+    List <Widget> lista = [];
+
+    for (var i = 0; i < 6; i ++){
+      lista.add(
+        Column(
+          
+          children: <Widget>[
+            FadeInImage(
+              image: NetworkImage('https://picsum.photos/200/200/?image=$i'),
+              placeholder: AssetImage('assets/no-image.jpg'),
+              width: 88.0,
+              height: 88.0
+
+            ),
+            Text('Nombre', style: TextStyle(fontSize: 15.0))
+          ],
+        )
+      );
+    }
+
     return lista;
   }
 }
